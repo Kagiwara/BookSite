@@ -8,6 +8,9 @@ Set up a python virtual environment
 Run the following commands
 
 $ pip install -r requirements.txt
+
 $ cd GDbook  
+
 $ python manage.py migrate
+
 $ python manage.py runserver
