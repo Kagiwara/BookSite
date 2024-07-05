@@ -13,7 +13,11 @@
 </head>
 <body class="body-main"><header>
     <div class="left-button-group">
-        <a class="header-button button-create" href="/create">CREATE</a>
+        {% if user.is_staff %}
+				 <a class="header-button button-create" href="/create">CREATE</a>
+				 {% else %}
+
+				 {% endif %}
         <a class="header-button button-book" href="/book">BOOK</a>
         <a class="header-button button-reviews" href="/reviews">REVIEWS</a>
     </div>
@@ -21,7 +25,23 @@
         <a class="header-button button-main" href="/">MAIN</a>
     </div>
     <div class="right-button-group">
-        <a class="header-button button-sign" href="/sign">SIGN IN</a>
+        {% if user.is_authenticated %}
+				 <p class="header-button button-sign" >{{ user.username }}</p>
+
+        <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+            <button class="header-button button-sign" type="submit">Log out</button>
+        </form>
+				 {% else %}
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+				 <button class="header-button button-sign" href="{% url 'register' %}" class="link">REGISTER</button>
+            </form>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+	     <button class="header-button button-sign" href="{% url 'login' %}" class="link">LOGIN</button>
+            </form>
+				 {% endif %}
     </div>
 </header>
 

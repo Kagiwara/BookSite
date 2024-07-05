@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
@@ -14,4 +15,12 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return '/book/'
+
+class Reviews(models.Model):
+     nickname = models.CharField(max_length=100)
+     reviews = models.TextField()
+
+
+# class User(AbstractUser):
+#     pass
 

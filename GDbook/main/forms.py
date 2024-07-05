@@ -1,5 +1,7 @@
-from .models import Book
-from django.forms import ModelForm, TextInput, FileInput
+from django.contrib.auth.forms import UserCreationForm
+
+from .models import Book, Reviews
+from django.forms import ModelForm, TextInput, FileInput, Textarea
 
 
 class BookForm(ModelForm):
@@ -16,18 +18,18 @@ class BookForm(ModelForm):
                 'class': 'create-form-input create-input-name',
                 'type': "text",
                 'name': "bookName",
-                'value': "name book"
+                'placeholder':  "name book"
             }),
             "description_book": TextInput(attrs={
                 'class': 'create-form-input create-input-description',
                 'type': "text",
                 'name': "bookDescription",
-                'value': "description book"
+                'placeholder':  "description book"
             }), "author_book": TextInput(attrs={
                 'class': 'create-form-input create-input-author',
                 'type': "text",
                 'name': "bookAuthor",
-                'value': "author book"
+                'placeholder':  "author book"
             }), "file": FileInput(attrs={
                 'class': 'form-control',
                 'type': "file",
@@ -39,3 +41,33 @@ class BookForm(ModelForm):
             })
 
         }
+
+class ReviewsForm(ModelForm):
+
+    class Meta:
+        # Название модели на основе
+        # которой создается форма
+        model = Reviews
+        # Включаем все поля с модели в форму
+        fields = ['nickname', 'reviews']
+
+        widgets = {
+            "nickname": TextInput(attrs={
+                'class': 'create-form-input create-input-name',
+                'type': "text",
+                'placeholder': 'USERNAME',
+
+            }),
+            "reviews": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder':'REVIEWS',
+
+            })
+
+        }
+
+
+
+
+class RegForm(UserCreationForm):
+    pass
