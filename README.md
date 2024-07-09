@@ -1,3 +1,5 @@
+UPD: https://vikez.pythonanywhere.com/ - link on site
+
 Tutorial
 Here is a tutorial on how to build this project.
 
